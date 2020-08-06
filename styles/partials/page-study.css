@@ -270,4 +270,14 @@
         display: initial;
         margin-left: 4rem;
     }
+
+    .teacher-item footer button{
+        width: 245px;
+        font-size: 16px;
+        justify-content: center;
+    }
+
+    .teacher-item footer button img{
+        margin-right: 16px;
+    }
 }
