@@ -10,18 +10,57 @@ const proffys = [
         time_from: [780],
         time_to: [1880]
     }
-]
+];
+
+const subjects = [
+    "Artes",
+    "Biologia",
+    "Ciências",
+    "Educação Física",
+    "Física",
+    "Geografia",
+    "História",
+    "Matemática",
+    "Português",
+    "Química",
+];
+
+const weekdays = [
+"Segunda Feira",
+"Terça Feira",
+"Quarta Feira",
+"Quinta Feira",
+"Sexta Feira",
+"Sábado",
+"Domingo",
+];
+
+function getSubject(subjectNumber){
+    return subjects[subjectNumber-1];
+}
 
 function pageLanding(request, response){
     response.render("index.html")
 }
 
 function pageStudy(request, response){
-    response.render("study.html", { proffys })
+    const filters =  request.query;
+    response.render("study.html", { proffys, filters, subjects, weekdays })
 }
 
 function pageGiveClasses(request, response){
-    response.render("give-classes.html")
+    const data = request.query;
+    const isNotEmpty = Object.keys(data).length > 0 ;
+    
+    if(isNotEmpty){
+
+        data.subject = getSubject(data.subject);
+        proffys.push(data);
+        
+        return response.redirect("/study");
+    }
+        
+    return response.render("give-classes.html", { subjects, weekdays })
 }
 
 const express = require('express');
