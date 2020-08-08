@@ -28,6 +28,6 @@ Database.then((db) => {
         }
     ];
 
-    // createProffy(db, {proffyValue, classValue, classScheduleValue});
+    // createProffy(db, {proffyValue, classValue, classScheduleValues});
 
 });
